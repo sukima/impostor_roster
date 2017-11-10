@@ -3,7 +3,7 @@
 <ul>
 <% @category_posts.each do |post| %>
   <li>
-    <%= post.inability %>, <%= post.months_experience %> months later.
+    <%= post.inability %>, <%= humanize_months(post.months_experience) %> later.
   </li>
 <% end %>
 </ul>

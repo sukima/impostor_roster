@@ -1,5 +1,5 @@
 <%= link_to "< All Posts", posts_path %>
-<h2>"I'm in the <strong><%= link_to "#{@post.category.name.titleize}", category_path(@post.category) %></strong> field for <strong><%= @post.months_experience %> months</strong> and I still can't <em><%= @post.inability %></em>.</li>"</h2>
+<h2>"I'm in the <strong><%= link_to "#{@post.category.name.titleize}", category_path(@post.category) %></strong> field for <strong><%= humanize_months(@post.months_experience) %></strong> and I still can't <em><%= @post.inability %></em>.</li>"</h2>
 
 
 <div id="disqus_thread" style="margin-top: 200px;"></div>
