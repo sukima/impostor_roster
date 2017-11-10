@@ -31,12 +31,33 @@ $(document).ready(function() {
     inabilityHints[Math.floor(Math.random()*inabilityHints.length)]
   );
 
+  function humanizeMonths(months) {
+    months = Number(months);
+    if (months === 0) {
+      return "less then a month";
+    }
+    var years = Math.floor(months / 12);
+    var remainder = months % 12;
+    var result = [];
+    if (years > 1) {
+      result += years + " years";
+    } else if (years > 0) {
+      result += "1 year";
+    }
+    if (remainder > 1) {
+      result += remainder + " months";
+    } else if (remainder > 0) {
+      result += "1 month";
+    }
+    return result.join(" ");
+  }
+
   $(".new-submission form input[type=submit]").click(function(event) {
     event.preventDefault();
     var field = $(".new-submission input[name='post[category]']").val();
-    var months = $(".new-submission input[name='post[months_experience]']").val();
+    var months = Number($(".new-submission input[name='post[months_experience]']").val());
     var inability = $(".new-submission input[name='post[inability]']").val();
-    var post = "Someone in the " + field + " field for " + months + " months still can't " + inability;
+    var post = "Someone in the " + field + " field for " + humanizeMonths(months) + " still can't " + inability;
 
     if(confirm("Your post will appear like this:\n'" + post + "'.\nOk? Or do you need to fix it?")) {
       $(".new-submission form").submit();
